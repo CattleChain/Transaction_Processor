@@ -22,16 +22,11 @@ const PAYLOAD_ACTIONS = {
     UPDATE_FARM_IDENTITY: 'update_farm_identity',
 }
 
-const PAYLOAD_TYPES = {
-    TYPE_ANIMAL: 'animal',
-    TYPE_FARM: 'farm',
-}
 module.exports = {
     TP_FAMILY,
     TP_VERSION,
     TP_NAMESPACE,
     TIMEOUT,
-    PAYLOAD_TYPES,
     PAYLOAD_ACTIONS,
     VALIDATOR_URL,
 }
