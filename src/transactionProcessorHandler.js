@@ -29,10 +29,10 @@ class CattleChainHandler extends TransactionHandler {
 
         const action = payload.action;
         console.log('action', action);
-        if (action === PAYLOAD_ACTIONS.CREATE_ANIMAL_IDENTIY) {
-            return await createAnimalIdentity(context, payload.data);
-        } else if (action === PAYLOAD_ACTIONS.ADD_ANIMAL_EVENT) {
+        if (action === PAYLOAD_ACTIONS.ADD_ANIMAL_EVENT) {
             return await addAnimalEvents(context, payload.data);
+        } else  if (action === PAYLOAD_ACTIONS.CREATE_ANIMAL_IDENTIY) {
+            return await createAnimalIdentity(context, payload.data);
         }
         else {
             throw new InvalidTransaction(
