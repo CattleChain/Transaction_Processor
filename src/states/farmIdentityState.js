@@ -41,10 +41,8 @@ class FarmIdentityState {
                     if (stateValue && stateValue.length) {
                         reject('Farm Asset exists');
                     }
-
                     const stateEntriesSend = {};
                     stateEntriesSend[address] = encode(obj);
-
                     return this.context.setState(stateEntriesSend, this.timeout);
                 }).then((result) => {
                     resolve(result);
