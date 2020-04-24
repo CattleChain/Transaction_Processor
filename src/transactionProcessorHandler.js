@@ -1,6 +1,6 @@
 const { TransactionHandler } = require('sawtooth-sdk/processor/handler')
 const { InvalidTransaction } = require('sawtooth-sdk/processor/exceptions')
-const { createAnimalIdentity, addAnimalEvents } = require('./states/animalIdentityState');
+const { createAnimalIdentity, addAnimalEvents, updateAnimalIdentity } = require('./states/animalIdentityState');
 const { TP_FAMILY, TP_VERSION, TP_NAMESPACE, PAYLOAD_ACTIONS } = require("./constant")
 const cbor = require('cbor');
 
@@ -28,11 +28,12 @@ class CattleChainHandler extends TransactionHandler {
         }
 
         const action = payload.action;
-        console.log('action', action);
         if (action === PAYLOAD_ACTIONS.ADD_ANIMAL_EVENT) {
             return await addAnimalEvents(context, payload.data);
-        } else  if (action === PAYLOAD_ACTIONS.CREATE_ANIMAL_IDENTIY) {
+        } else if (action === PAYLOAD_ACTIONS.CREATE_ANIMAL_IDENTIY) {
             return await createAnimalIdentity(context, payload.data);
+        }else if (action === PAYLOAD_ACTIONS.UPDATE_ANIMAL_IDENTITY) {
+            return await updateAnimalIdentity(context, payload.data);
         }
         else {
             throw new InvalidTransaction(

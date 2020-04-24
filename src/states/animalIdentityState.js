@@ -1,12 +1,11 @@
 const { createAccount } = require("../helper/accounts");
 const { animalIdentity_pb } = require('cattlechain-proto');
-const { PAYLOAD_ACTIONS } = require('../constant');
 
 async function createAnimalIdentity(context, payload) {
     const info = animalIdentity_pb.AnimalIdentity.deserializeBinary(payload);
     if (info.getLegalid() == null || info.getLegalid() == '') {
         console.log('legal Id is missing');
-        context.addEvent('CattleChain/AddAnimalEvent',
+        context.addEvent('cattlechain/add-animal',
             [
                 ['status', 'false'],
                 ['message', 'legal ID is missing']
@@ -20,23 +19,48 @@ async function createAnimalIdentity(context, payload) {
         if (info1.getLegalid() != info.getLegalid()) {
             const transaction = await context.setState(stateEntriesSend);
             console.log('asset created', transaction);
-            context.addEvent('CattleChain/CreateIdentity',
-                [
-                    ['address', address],
-                    ['asset_id', info.getLegalid()],
-                    ['payload', payload.toString()],
-                    ['status', 'true'],
-                    ['message', 'asset created']
-                ], 'asset created');
+            context.addEvent(
+                'cattlechain/add-animal',
+                [['address', address],['asset', info.getLegalid()], ['status', 'true'],['message', 'asset does not exist']],
+                null);
         } else {
             console.log('asset already exits');
-            context.addEvent('CattleChain/CreateIdentity',
-                [
-                    ['address', address],
-                    ['asset_id', info.getLegalid()],
-                    ['status', 'false'],
-                    ['message', 'asset already exist']
-                ], 'asset already exist');
+            context.addEvent(
+                'cattlechain/add-animal',
+                [['address', address],['asset', info.getLegalid()], ['status', 'false'],['message', 'asset already exist']],
+                null);
+        }
+    }
+}
+
+async function updateAnimalIdentity(context, payload) {
+    const info = animalIdentity_pb.AnimalIdentity.deserializeBinary(payload);
+    if (info.getLegalid() == null || info.getLegalid() == '') {
+        console.log('legal Id is missing');
+        context.addEvent('cattlechain/add-animal',
+            [
+                ['status', 'false'],
+                ['message', 'legal ID is missing']
+            ], 'legal Id is missing');
+    } else {
+        var address = createAccount(info.getLegalid());
+        let stateEntriesSend = {};
+        stateEntriesSend[address] = payload;
+        const data = await context.getState([address]);
+        const info1 = animalIdentity_pb.AnimalIdentity.deserializeBinary(data[address]);
+        if (info1.getLegalid() == info.getLegalid()) {
+            const transaction = await context.setState(stateEntriesSend);
+            console.log('asset update', transaction);
+            context.addEvent(
+                'cattlechain/update-animal',
+                [['address', address],['asset', info.getLegalid()], ['status', 'true'],['message', 'asset updated']],
+                null);
+        } else {
+            console.log('asset does not exits');
+            context.addEvent(
+                'cattlechain/update-animal',
+                [['address', address],['asset', info.getLegalid()], ['status', 'false'],['message', 'asset does not exist']],
+                null);
         }
     }
 }
@@ -45,7 +69,7 @@ async function addAnimalEvents(context, payload) {
     const info = animalIdentity_pb.AnimalIdentity.deserializeBinary(payload);
     if (info.getLegalid() == null || info.getLegalid() == '') {
         console.log('legal Id is missing');
-        context.addEvent('CattleChain/AddAnimalEvent',
+        context.addEvent('cattlechain/add-animal-event',
             [
                 ['status', 'false'],
                 ['message', 'legal ID is missing']
@@ -71,25 +95,26 @@ async function addAnimalEvents(context, payload) {
                 let payload = info1.serializeBinary();
                 stateEntriesSend[address] = payload;
                 const transaction = await context.setState(stateEntriesSend);
+                const eventPayload = {
+                    'activityAlert':item.getActityalert(),
+                    'temratureAlert':item.getTempraturealert(),
+                    'weightAlert': item.setWeightalert(),
+                    'drinkingAlert':item.getDairytimealert(),
+                    'resttimeAlert':item.getResttimealert(),
+                    'dairyAlert':item.getDairytimealert()
+                }
                 console.log('event created', transaction);
-                context.addEvent('CattleChain/AddAnimalEvent',
-                    [
-                        ['address', address],
-                        ['asset_id', info.getLegalid()],
-                        ['payload', payload.toString()],
-                        ['status', 'true'],
-                        ['message', 'asset does not exist']
-                    ], 'asset does not exist');
+                context.addEvent(
+                    'cattlechain/add-animal-event',
+                    [['address', address],['asset', info.getLegalid()], ['status', 'true'],['payload', JSON.stringify(eventPayload)],['message', 'event added']],
+                    null);
             }
         } else {
             console.log('asset does not exists');
-            context.addEvent('CattleChain/AddAnimalEvent',
-                [
-                    ['address', address],
-                    ['asset_id', info.getLegalid()],
-                    ['status', 'false'],
-                    ['message', 'asset does not exist']
-                ], 'asset does not exist');
+            context.addEvent(
+                'cattlechain/add-animal-event',
+                [['address', address],['asset', info.getLegalid()], ['status', 'false'],['message', 'asset does not exist']],
+                null);
         }
     }
 }
@@ -97,5 +122,6 @@ async function addAnimalEvents(context, payload) {
 
 module.exports = {
     createAnimalIdentity,
+    updateAnimalIdentity,
     addAnimalEvents,
 }
