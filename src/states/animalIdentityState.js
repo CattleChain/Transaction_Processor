@@ -87,7 +87,7 @@ async function addAnimalEvents(context, payload) {
                 let stateEntriesSend = {};
                 event.setActityalert(item.getActityalert());
                 event.setTempraturealert(item.getTempraturealert());
-                event.setWeightalert(item.setWeightalert());
+                event.setWeightalert(item.getWeightalert());
                 event.setDrikingbehaviouralert(item.getDairytimealert());
                 event.setResttimealert(item.getResttimealert());
                 event.setDairytimealert(item.getDairytimealert());
@@ -98,7 +98,7 @@ async function addAnimalEvents(context, payload) {
                 const eventPayload = {
                     'activityAlert':item.getActityalert(),
                     'temratureAlert':item.getTempraturealert(),
-                    'weightAlert': item.setWeightalert(),
+                    'weightAlert': item.getWeightalert(),
                     'drinkingAlert':item.getDairytimealert(),
                     'resttimeAlert':item.getResttimealert(),
                     'dairyAlert':item.getDairytimealert()
