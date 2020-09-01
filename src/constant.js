@@ -6,7 +6,7 @@ const TP_FAMILY = process.env.TP_FAMILY || 'CattleChain';
 const TP_VERSION = process.env.TP_VERSION ||'0.0.2';
 // Transaction Processor Namespace
 // https://sawtooth.hyperledger.org/docs/core/nightly/1-1/app_developers_guide/address_and_namespace.html#namespace-prefix
-const TP_NAMESPACE = _hash(TP_FAMILY).substring(0, 6);
+const TP_NAMESPACE = process.env.TP_NAMESPACE ||  _hash(TP_FAMILY).substring(0, 6);
 // max timeout 
 const TIMEOUT = 1000;
 console.log('TP_NAMESPACE', TP_NAMESPACE);

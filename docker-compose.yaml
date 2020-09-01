@@ -1,0 +1,11 @@
+version: '3.5'
+services:
+    # Cattlechain Transaction Processor
+    cattlechain-tp:
+        build: 
+            context: .
+        environment:
+        - VALIDATOR_URL=tcp://46.17.108.38:4004
+        - TP_FAMILY='CattleChain'
+        - TP_VERSION='0.0.2'
+        - TP_NAMESPACE='08908d'
