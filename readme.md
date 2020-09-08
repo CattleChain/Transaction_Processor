@@ -1,12 +1,8 @@
 # CattleChain Transaction Processor
 
 
-[![Build Status](https://travis-ci.org/CattleChain/Transaction_Processor.svg?branch=master)](https://travis-ci.org/CattleChain/Transaction_Processor)
-[![dependencies Status](https://img.shields.io/david/CattleChain/Transaction_Processor)](https://img.shields.io/david/CattleChain/Transaction_Processor)
-[![devDependencies Status](https://img.shields.io/david/dev/CattleChain/Transaction_Processor)](https://img.shields.io/david/dev/CattleChain/Transaction_Processor)
+[![Build Status](https://api.travis-ci.com/CattleChain/Transaction_Processor.svg?token=AyxbT6xSu5zpxMuneAWd&branch=master)](https://travis-ci.org/CattleChain/Transaction_Processor)
 [![Support badge](https://nexus.lab.fiware.org/repository/raw/public/badges/stackoverflow/fiware.svg)](https://stackoverflow.com/questions/tagged/fiware)
-[![Github issues](https://img.shields.io/github/issues/CattleChain/Transaction_Processor)](https://github.com/CattleChain/Transaction_Processor/issues)
-[![Coverage Status](https://coveralls.io/repos/github/CattleChain/Transaction_Processor/badge.svg?branch=master)](https://coveralls.io/github/CattleChain/Transaction_Processor?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 
