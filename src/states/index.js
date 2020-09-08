@@ -1,7 +1,7 @@
-const animalIdentity = require('./animalIdentityState');
-const farmIdentity = require('./farmIdentityState');
+const animalStates = require('./animal_state');
+const dairyStates = require('./dairy_state');
 
 module.exports = {
-    AnimalIdentityState : animalIdentity,
-    FarmIdentityState : farmIdentity,
+    animalStates : animalStates,
+    dairyStates : dairyStates,
 }

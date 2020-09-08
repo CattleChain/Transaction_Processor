@@ -1,6 +1,7 @@
 const { createAccount } = require("../helper/accounts");
-const { animalIdentity_pb } = require('cattlechain-proto');
+const { animalIdentity_pb } = require('cattlechain_protos');
 
+// create animal identity
 async function createAnimalIdentity(context, payload) {
     const info = animalIdentity_pb.AnimalIdentity.deserializeBinary(payload);
     if (info.getLegalid() == null || info.getLegalid() == '') {
@@ -33,6 +34,7 @@ async function createAnimalIdentity(context, payload) {
     }
 }
 
+// update animal identity
 async function updateAnimalIdentity(context, payload) {
     const info = animalIdentity_pb.AnimalIdentity.deserializeBinary(payload);
     if (info.getLegalid() == null || info.getLegalid() == '') {
@@ -65,7 +67,8 @@ async function updateAnimalIdentity(context, payload) {
     }
 }
 
-async function addAnimalEvents(context, payload) {
+// monitoring events (to be fixed)
+async function AnimalMonitoring(context, payload) {
     const info = animalIdentity_pb.AnimalIdentity.deserializeBinary(payload);
     if (info.getLegalid() == null || info.getLegalid() == '') {
         console.log('legal Id is missing');
@@ -119,9 +122,14 @@ async function addAnimalEvents(context, payload) {
     }
 }
 
+// to be fixed
+async function AnimalWelfareIndicators(context, payload) {
+}
+
 
 module.exports = {
     createAnimalIdentity,
     updateAnimalIdentity,
-    addAnimalEvents,
+    AnimalMonitoring,
+    AnimalWelfareIndicators
 }
