@@ -17,15 +17,12 @@ const PAYLOAD_ACTIONS = {
     // animal
     CREATE_ANIMAL_IDENTIY: 'create_animal_identity',
     UPDATE_ANIMAL_IDENTITY: 'update_animal_identity',
-    ANIMAL_MONITORING_EVENT: 'animal_monitor_event',
-    ANIMAL_WELFARE_INDICATOR: 'animal_welfare_indicator',
-
-
     // dairy
     CREATE_DAIRY_IDENTITY: 'create_farm_identity',
     UPDATE_DAIRY_IDENTITY: 'update_farm_identity',
-    DAIRY_MONITORING_EVENT: 'dairy_monitor_event',
-    DAIRY_WELFARE_INDICATOR: 'dairy_welfare_indicator',
+    // device
+    ADD_ANIMAL_MONITORING_EVENT: 'animal_monitor_event',
+    ADD_ANIMAL_INDICATORS_EVENT: 'animal_welfare_indicator_event',
 }
 
 module.exports = {

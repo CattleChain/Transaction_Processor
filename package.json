@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/CattleChain/Transaction_Processor#readme",
   "dependencies": {
-    "cattlechain_protos": "0.0.5",
+    "cattlechain_protos": "0.0.7",
     "cbor": "^5.0.1",
     "crypto": "^1.0.1",
     "eslint": "^6.8.0",

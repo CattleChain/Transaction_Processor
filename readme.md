@@ -21,10 +21,10 @@ $ TIMEOUT
 ### Status
 - [x] Animal Identity
 - [x] Animal Identity Update
-- [ ] Animal Monitoring Event
-- [ ] Animal Welfare Indicators
-- [ ] Dairy Identity
-- [ ] Dairy Identity Update
+- [x] Animal Monitoring Event (default payload)
+- [x] Animal Welfare Indicators (default payload)
+- [x] Dairy Identity
+- [x] Dairy Identity Update
 - [ ] Dairy Monitoring Event
 - [ ] Dairy Welfare Indicators
 - [ ] Account managment
